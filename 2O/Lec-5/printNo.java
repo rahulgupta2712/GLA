@@ -6,8 +6,8 @@ public class printNo {
         if(n<=0)
             return;
 
-        // printNumbers(n-1);
+        // printNumbers(n-1);           //accending order
         System.out.println(n);
-        printNumbers(n-1);
+        printNumbers(n-1); // decending order
     }
 }
