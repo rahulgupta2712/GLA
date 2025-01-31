@@ -1,22 +1,18 @@
+
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> res = new ArrayList<>();
-        res.add(List.of(1));
-
-        for (int i = 0; i < numRows - 1; i++) {
-            List<Integer> dummyRow = new ArrayList<>();
-            dummyRow.add(0);
-            dummyRow.addAll(res.get(res.size() - 1));
-            dummyRow.add(0);
-            List<Integer> row = new ArrayList<>();
-
-            for (int j = 0; j < dummyRow.size() - 1; j++) {
-                row.add(dummyRow.get(j) + dummyRow.get(j + 1));
+        List<List<Integer>> triangle = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>(i + 1);
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    row.add(1);  // The first and last elements are always 1
+                } else {
+                    row.add(triangle.get(i - 1).get(j - 1) + triangle.get(i - 1).get(j));
+                }
             }
-
-            res.add(row);
+            triangle.add(row);
         }
-
-        return res;        
+        return triangle;
     }
 }
